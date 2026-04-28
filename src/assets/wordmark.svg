@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 260 56" width="260" height="56" role="img" aria-label="Meet Ally">
+  <defs>
+    
+  </defs>
+  
+  <rect x="4" y="16" width="24" height="24" rx="3" fill="#8B5CF6"></rect>
+  <rect x="4" y="26" width="24" height="2" fill="#0A0A0C" fill-opacity="0.6"></rect>
+  <rect x="22" y="34" width="6" height="6" fill="#A78BFA"></rect>
+  
+  <text x="40" y="28" class="meet">meet</text>
+  <text x="40" y="44" class="ally">Ally.</text>
+</svg>

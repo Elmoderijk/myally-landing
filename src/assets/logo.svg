@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48" width="48" height="48" role="img" aria-label="Meet Ally">
+  <rect x="4" y="4" width="40" height="40" rx="6" fill="#101014" stroke="#33333E" stroke-width="1"></rect>
+  
+  <rect x="14" y="14" width="20" height="20" rx="2" fill="#8B5CF6"></rect>
+  
+  <rect x="14" y="22" width="20" height="2" fill="#0A0A0C" fill-opacity="0.6"></rect>
+  
+  <rect x="30" y="30" width="4" height="4" fill="#A78BFA"></rect>
+</svg>
