@@ -1,0 +1,22 @@
+{
+  "permissions": {
+    "allow": [
+      "Edit(*)",
+      "Write(*)",
+      "Read(*)",
+      "Bash(find:*)",
+      "Bash(ls:*)",
+      "Bash(cat:*)",
+      "Bash(npm:*)",
+      "Bash(npx:*)",
+      "Bash(pnpm:*)"
+    ],
+    "deny": [
+      "Bash(rm:*)",
+      "Bash(git push:*)",
+      "Bash(npm publish:*)",
+      "Write(.claude/**)",
+      "Edit(.claude/**)"
+    ]
+  }
+}
