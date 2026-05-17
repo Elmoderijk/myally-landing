@@ -2,7 +2,7 @@ import React from 'react';
 
 // ─── useInView ────────────────────────────────────────────────────
 
-export const useInView = (ref: React.RefObject<HTMLElement | null>, threshold = 0.3) => {
+const useInView = (ref: React.RefObject<HTMLElement | null>, threshold = 0.3) => {
   const [seen, setSeen] = React.useState(false);
   React.useEffect(() => {
     const el = ref.current;

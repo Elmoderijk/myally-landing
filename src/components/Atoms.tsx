@@ -11,31 +11,6 @@ export const SignalDot = ({ color = 'var(--violet)', size = 8 }: { color?: strin
   }} />
 );
 
-// ─── Pill ────────────────────────────────────────────────────────
-
-type PillTone = 'violet' | 'cyan' | 'lime' | 'neutral';
-export const Pill = ({ children, tone = 'neutral', mono = false }: { children: React.ReactNode; tone?: PillTone; mono?: boolean }) => {
-  const tones: Record<PillTone, { bg: string; fg: string; border: string }> = {
-    violet: { bg: 'rgba(139,92,246,0.12)', fg: 'var(--violet-bright)', border: 'rgba(139,92,246,0.28)' },
-    cyan:   { bg: 'rgba(34,211,238,0.10)', fg: 'var(--cyan)',           border: 'rgba(34,211,238,0.25)' },
-    lime:   { bg: 'rgba(132,204,22,0.10)', fg: 'var(--lime)',           border: 'rgba(132,204,22,0.28)' },
-    neutral:{ bg: 'var(--bg-2)',            fg: 'var(--fg-1)',           border: 'var(--line-strong)' },
-  };
-  const t = tones[tone];
-  return (
-    <span style={{
-      display: 'inline-flex', alignItems: 'center', gap: 6,
-      padding: '4px 10px', background: t.bg, color: t.fg,
-      border: `1px solid ${t.border}`, borderRadius: 3,
-      fontSize: 11,
-      fontFamily: mono ? 'var(--font-mono)' : 'var(--font-sans)',
-      letterSpacing: mono ? '0.02em' : '0',
-      textTransform: mono ? 'uppercase' : 'none',
-      fontWeight: 500, lineHeight: 1, whiteSpace: 'nowrap',
-    }}>{children}</span>
-  );
-};
-
 // ─── ArrowIcon ───────────────────────────────────────────────────
 
 export const ArrowIcon = () => (
@@ -46,7 +21,7 @@ export const ArrowIcon = () => (
 
 // ─── Button ──────────────────────────────────────────────────────
 
-export const MagneticButton = ({ children, strength = 0.3, style = {}, ...rest }: { children: React.ReactNode; strength?: number; style?: React.CSSProperties; [key: string]: any }) => {
+const MagneticButton = ({ children, strength = 0.3, style = {}, ...rest }: { children: React.ReactNode; strength?: number; style?: React.CSSProperties; [key: string]: any }) => {
   const ref = React.useRef<HTMLSpanElement>(null);
   const [t, setT] = React.useState({ x: 0, y: 0 });
   return (
@@ -114,7 +89,7 @@ export const Button = ({ children, primary = false, icon = null, onClick, accent
 
 // ─── AllyLogoMark ────────────────────────────────────────────────
 
-export const AllyLogoMark = ({ size = 26, id = 'ally-logo-grad' }: { size?: number; id?: string }) => (
+const AllyLogoMark = ({ size = 26, id = 'ally-logo-grad' }: { size?: number; id?: string }) => (
   <svg width={size} height={size} viewBox="0 0 92 92" xmlns="http://www.w3.org/2000/svg" style={{ display: 'block' }}>
     <defs>
       <linearGradient id={id} x1="0%" y1="0%" x2="100%" y2="100%">
