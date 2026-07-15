@@ -423,7 +423,7 @@ export const FAQSection = ({ tweaks }: { tweaks: Tweaks }) => {
     { q: 'Hoe lang duurt de setup?',               a: 'Een eerste integratie is in ~10 minuten klaar. De leerfase duurt ongeveer een week — daarin kijkt Ally mee zonder iets te raken, zodat ze je flows leert kennen.' },
     { q: 'Werkt Ally in het Nederlands?',           a: 'Ja, Ally praat standaard Nederlands. Engels, Duits en Frans kunnen ook — handig als je team internationaal is.' },
     { q: 'Wat als Ally iets fout doet?',             a: 'Elke actie is reversibel en gelogd. Je kunt regels instellen waar Ally altijd eerst moet vragen — bijvoorbeeld bij betalingen boven een bedrag.' },
-    { q: 'Hoeveel kost het?',                         a: 'Drie tiers: Basic, Premium en Scale. Zie de pricing-sectie hierboven, of neem contact op voor een tier op maat.' },
+    { q: 'Hoeveel kost het?',                         a: 'Elke Ally is maatwerk, dus de prijs ook: een eenmalige bouwfee plus een vast maandbedrag voor hosting, beheer en doorbouwen. Plan een kort gesprek, dan weet je binnen 15 minuten waar je aan toe bent.' },
   ];
   return (
     <section style={{ padding: '120px 80px', borderTop: '1px solid var(--line)', position: 'relative' }}>
@@ -453,92 +453,59 @@ export const FAQSection = ({ tweaks }: { tweaks: Tweaks }) => {
 // ─── PricingSection ──────────────────────────────────────────────
 
 export const PricingSection = ({ tweaks }: { tweaks: Tweaks }) => {
-  const [yearly, setYearly] = React.useState(true);
-  const tiers = [
-    { name: 'Basic',   tag: 'starter',      monthly: 49,  copy: 'Voor solo founders die rust willen in de inbox.',          features: ['1 integratie', 'Briefing 1×/dag', 'NL/EN', 'E-mail support'],                              featured: false },
-    { name: 'Premium', tag: 'meest gekozen', monthly: 149, copy: 'Voor kleine teams. Ally draait mee in al je tools.',        features: ['Tot 6 integraties', 'Realtime monitoring', 'Anomaly detection', 'Slack + Discord', 'Priority support'], featured: true },
-    { name: 'Scale',   tag: 'op maat',       monthly: 399, copy: 'Voor teams die Ally door alles laten meekijken.',          features: ['Onbeperkte integraties', 'Custom flows', 'Dedicated tier', 'SSO + audit logs', '24/7 SLA'],       featured: false },
+  const included = [
+    'Een eigen app, gebouwd rond jouw processen',
+    'Ally als collega erin — gewoon in het Nederlands',
+    'Hosting, beveiliging en beheer volledig geregeld',
+    'Doorbouwen: nieuwe wensen vraag je gewoon aan',
+    'Jouw data blijft van jou, netjes geback-upt',
   ];
-  const price = (m: number) => yearly ? Math.round(m * 0.8) : m;
-
   return (
     <section style={{ padding: '120px 80px', borderTop: '1px solid var(--line)', position: 'relative' }}>
-      <Reveal>
-        <div style={{ textAlign: 'center', marginBottom: 48 }}>
+      <div style={{ display: 'grid', gridTemplateColumns: '1fr 1.6fr', gap: 80, alignItems: 'start' }}>
+        <Reveal>
           <div style={{ fontFamily: 'var(--font-mono)', fontSize: 11, color: 'var(--fg-2)', textTransform: 'uppercase', letterSpacing: '0.08em', marginBottom: 16 }}>08 · pricing</div>
-          <h2 style={{ fontSize: 56, lineHeight: 1.02, letterSpacing: '-0.035em', fontWeight: 600, marginBottom: 16 }}>
-            Kies een Ally.<br /><span style={{ color: 'var(--fg-2)' }}>Eén collega, drie maten.</span>
+          <h2 style={{ fontSize: 48, lineHeight: 1.02, letterSpacing: '-0.035em', fontWeight: 600, marginBottom: 24 }}>
+            Maatwerk.<br /><span style={{ color: 'var(--fg-2)' }}>Dus prijs op maat.</span>
           </h2>
-        </div>
-      </Reveal>
-
-      <Reveal delay={100}>
-        <div style={{ display: 'flex', justifyContent: 'center', marginBottom: 48 }}>
-          <div style={{ display: 'inline-flex', background: 'var(--bg-1)', border: '1px solid var(--line)', borderRadius: 999, padding: 4, position: 'relative' }}>
-            <div style={{
-              position: 'absolute', top: 4, bottom: 4,
-              left: yearly ? 'calc(50% + 0px)' : 4,
-              width: 'calc(50% - 4px)',
-              background: tweaks.accent, borderRadius: 999,
-              boxShadow: `0 0 0 1px ${tweaks.accent}55, 0 0 16px ${tweaks.accent}55`,
-              transition: 'left 320ms cubic-bezier(0.2,0.8,0.2,1)',
-            }} />
-            {[{ l: 'Maandelijks', v: false }, { l: 'Jaarlijks  −20%', v: true }].map((t, i) => (
-              <button key={i} data-cursor="hover" onClick={() => setYearly(t.v)} style={{
-                position: 'relative', padding: '10px 24px', background: 'transparent', border: 'none',
-                color: yearly === t.v ? '#fff' : 'var(--fg-1)',
-                fontFamily: 'var(--font-sans)', fontSize: 13, fontWeight: 500, cursor: 'pointer',
-                transition: 'color 220ms ease', letterSpacing: '-0.005em',
-              }}>{t.l}</button>
-            ))}
-          </div>
-        </div>
-      </Reveal>
-
-      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: 16 }}>
-        {tiers.map((tier, i) => (
-          <Reveal key={tier.name} delay={i * 100}>
-            <div style={{
-              padding: '36px 28px',
-              border: tier.featured ? `1px solid ${tweaks.accent}66` : '1px solid var(--line)',
-              borderRadius: 12, background: tier.featured ? `linear-gradient(180deg, ${tweaks.accent}10, transparent), var(--bg-1)` : 'var(--bg-1)',
-              position: 'relative', overflow: 'hidden',
-              boxShadow: tier.featured ? `0 0 0 1px ${tweaks.accent}22, 0 30px 60px -20px ${tweaks.accent}44` : 'none',
-            }}>
-              {tier.featured && (
-                <div aria-hidden style={{ position: 'absolute', top: -50, right: -50, width: 220, height: 220, borderRadius: '50%', background: `radial-gradient(circle, ${tweaks.accent}33, transparent 70%)`, filter: 'blur(20px)', pointerEvents: 'none' }} />
-              )}
-              <div style={{ position: 'relative' }}>
-                <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 24 }}>
-                  <span style={{ fontSize: 16, fontWeight: 600, letterSpacing: '-0.01em' }}>{tier.name}</span>
-                  <span style={{
-                    fontFamily: 'var(--font-mono)', fontSize: 10,
-                    color: tier.featured ? tweaks.accentBright : 'var(--fg-2)',
-                    textTransform: 'uppercase', letterSpacing: '0.08em',
-                    border: `1px solid ${tier.featured ? tweaks.accent + '55' : 'var(--line-strong)'}`,
-                    padding: '3px 8px', borderRadius: 3,
-                  }}>{tier.tag}</span>
+          <p style={{ fontSize: 14, lineHeight: 1.6, color: 'var(--fg-1)', maxWidth: 340, marginBottom: 28 }}>
+            Geen standaardpakketten — elke Ally wordt gebouwd rond jouw bedrijf. Je betaalt eenmalig voor de bouw en daarna een vast maandbedrag voor hosting, beheer en doorbouwen. In een kort gesprek weet je waar je aan toe bent.
+          </p>
+          <Button primary icon={<ArrowIcon />} accent={tweaks.accent}>Plan een gesprek</Button>
+        </Reveal>
+        <Reveal delay={100}>
+          <div style={{
+            padding: '36px 32px',
+            border: `1px solid ${tweaks.accent}66`,
+            borderRadius: 12,
+            background: `linear-gradient(180deg, ${tweaks.accent}10, transparent), var(--bg-1)`,
+            position: 'relative', overflow: 'hidden',
+            boxShadow: `0 0 0 1px ${tweaks.accent}22, 0 30px 60px -20px ${tweaks.accent}44`,
+          }}>
+            <div aria-hidden style={{ position: 'absolute', top: -50, right: -50, width: 220, height: 220, borderRadius: '50%', background: `radial-gradient(circle, ${tweaks.accent}33, transparent 70%)`, filter: 'blur(20px)', pointerEvents: 'none' }} />
+            <div style={{ position: 'relative' }}>
+              <div style={{ fontFamily: 'var(--font-mono)', fontSize: 10, color: tweaks.accentBright, textTransform: 'uppercase', letterSpacing: '0.08em', marginBottom: 24 }}>altijd inbegrepen</div>
+              <div style={{ display: 'flex', flexDirection: 'column', gap: 14, marginBottom: 32 }}>
+                {included.map((f, j) => (
+                  <div key={j} style={{ display: 'flex', gap: 10, alignItems: 'center', fontSize: 14, color: 'var(--fg-0, inherit)' }}>
+                    <span style={{ width: 14, height: 1, background: tweaks.accentBright, flexShrink: 0 }} />
+                    {f}
+                  </div>
+                ))}
+              </div>
+              <div style={{ paddingTop: 24, borderTop: '1px solid var(--line)', display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 24 }}>
+                <div>
+                  <div style={{ fontSize: 15, fontWeight: 600, letterSpacing: '-0.01em', marginBottom: 6 }}>Eenmalige bouwfee</div>
+                  <p style={{ fontSize: 13, lineHeight: 1.5, color: 'var(--fg-1)' }}>Afhankelijk van welke onderdelen jouw app nodig heeft.</p>
                 </div>
-                <div style={{ display: 'flex', alignItems: 'baseline', gap: 6, marginBottom: 8 }}>
-                  <span style={{ fontSize: 56, fontWeight: 600, letterSpacing: '-0.035em', lineHeight: 1 }}>€{price(tier.monthly)}</span>
-                  <span style={{ fontFamily: 'var(--font-mono)', fontSize: 12, color: 'var(--fg-2)' }}>/mnd</span>
-                </div>
-                <p style={{ fontSize: 13, lineHeight: 1.5, color: 'var(--fg-1)', marginBottom: 28, minHeight: 40 }}>{tier.copy}</p>
-                <Button primary={tier.featured} icon={<ArrowIcon />} accent={tweaks.accent}>
-                  {tier.featured ? 'Start met Ally' : 'Kies dit plan'}
-                </Button>
-                <div style={{ marginTop: 28, paddingTop: 24, borderTop: '1px solid var(--line)', display: 'flex', flexDirection: 'column', gap: 12 }}>
-                  {tier.features.map((f, j) => (
-                    <div key={j} style={{ display: 'flex', gap: 10, alignItems: 'center', fontSize: 13, color: 'var(--fg-1)' }}>
-                      <span style={{ width: 14, height: 1, background: tier.featured ? tweaks.accentBright : 'var(--fg-3)', flexShrink: 0 }} />
-                      {f}
-                    </div>
-                  ))}
+                <div>
+                  <div style={{ fontSize: 15, fontWeight: 600, letterSpacing: '-0.01em', marginBottom: 6 }}>Vast maandbedrag</div>
+                  <p style={{ fontSize: 13, lineHeight: 1.5, color: 'var(--fg-1)' }}>Hosting, AI-gebruik, onderhoud en doorbouwen — zonder verrassingen.</p>
                 </div>
               </div>
             </div>
-          </Reveal>
-        ))}
+          </div>
+        </Reveal>
       </div>
     </section>
   );
