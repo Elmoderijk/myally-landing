@@ -100,7 +100,7 @@ export const HowItWorksSection = ({ tweaks }: { tweaks: Tweaks }) => {
   ];
 
   return (
-    <section ref={ref} style={{ padding: '120px 80px', borderTop: '1px solid var(--line)', position: 'relative' }}>
+    <section ref={ref} data-section="hoeitwerkt" style={{ padding: '120px 80px', borderTop: '1px solid var(--line)', position: 'relative' }}>
       <Reveal>
         <div style={{ fontFamily: 'var(--font-mono)', fontSize: 11, color: 'var(--fg-2)', textTransform: 'uppercase', letterSpacing: '0.08em', marginBottom: 16 }}>04 · hoe het werkt</div>
         <h2 style={{ fontSize: 56, lineHeight: 1.02, letterSpacing: '-0.035em', fontWeight: 600, marginBottom: 80, maxWidth: 720 }}>
@@ -196,7 +196,7 @@ export const ScrollTimeline = ({ tweaks }: { tweaks: Tweaks }) => {
   const tp = smooth(clamp((p - 0.15) / 0.65));
 
   return (
-    <section ref={sectionRef} style={{ padding: '120px 80px', borderTop: '1px solid var(--line)', background: 'var(--bg-1)', position: 'relative' }}>
+    <section ref={sectionRef} data-section="timeline" style={{ padding: '120px 80px', borderTop: '1px solid var(--line)', background: 'var(--bg-1)', position: 'relative' }}>
       <Reveal>
         <div style={{ fontFamily: 'var(--font-mono)', fontSize: 11, color: 'var(--fg-2)', textTransform: 'uppercase', letterSpacing: '0.08em', marginBottom: 16 }}>02 · een dag met ally</div>
         <h2 style={{ fontSize: 48, lineHeight: 1.05, letterSpacing: '-0.03em', fontWeight: 600, marginBottom: 14, maxWidth: 720 }}>Dit komt er uit Ally.</h2>
@@ -426,7 +426,7 @@ export const FAQSection = ({ tweaks }: { tweaks: Tweaks }) => {
     { q: 'Hoeveel kost het?',                         a: 'Elke Ally is maatwerk, dus de prijs ook: een eenmalige bouwfee plus een vast maandbedrag voor hosting, beheer en doorbouwen. Plan een kort gesprek, dan weet je binnen 15 minuten waar je aan toe bent.' },
   ];
   return (
-    <section style={{ padding: '120px 80px', borderTop: '1px solid var(--line)', position: 'relative' }}>
+    <section data-section="faq" style={{ padding: '120px 80px', borderTop: '1px solid var(--line)', position: 'relative' }}>
       <div style={{ display: 'grid', gridTemplateColumns: '1fr 1.6fr', gap: 80, alignItems: 'start' }}>
         <Reveal>
           <div style={{ fontFamily: 'var(--font-mono)', fontSize: 11, color: 'var(--fg-2)', textTransform: 'uppercase', letterSpacing: '0.08em', marginBottom: 16 }}>07 · vragen</div>
@@ -461,7 +461,7 @@ export const PricingSection = ({ tweaks }: { tweaks: Tweaks }) => {
     'Jouw data blijft van jou, netjes geback-upt',
   ];
   return (
-    <section style={{ padding: '120px 80px', borderTop: '1px solid var(--line)', position: 'relative' }}>
+    <section data-section="pricing" style={{ padding: '120px 80px', borderTop: '1px solid var(--line)', position: 'relative' }}>
       <div style={{ display: 'grid', gridTemplateColumns: '1fr 1.6fr', gap: 80, alignItems: 'start' }}>
         <Reveal>
           <div style={{ fontFamily: 'var(--font-mono)', fontSize: 11, color: 'var(--fg-2)', textTransform: 'uppercase', letterSpacing: '0.08em', marginBottom: 16 }}>08 · pricing</div>
