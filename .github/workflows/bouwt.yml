@@ -1,0 +1,24 @@
+name: Bouwt
+
+# Waarom deze workflow bestaat (2026-09-16).
+#
+# De bouwmotor telt een klus pas als klaar als GitHub voor die versie groen zegt
+# (agents/tools/testuitslag.py). Zonder workflow blijft elke klus hier hangen.
+# Deze site heeft geen tests; de minimale controle is dat hij nog bouwt, precies
+# zoals de Dockerfile het doet. Draait bij élke push, zonder padfilter.
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  bouwt:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      # Zelfde hoofdversie als de image (node:24-alpine).
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+      - run: npm ci
+      - run: npm run build
