@@ -49,13 +49,14 @@ export const CommandPalette = ({ accent }: { accent: string }) => {
   return (
     <>
       <div
+        className="snel-navigeren"
         data-cursor="hover"
         onClick={() => setOpen(true)}
         style={{
           position: 'fixed', bottom: 24, left: 24, zIndex: 49,
           fontFamily: 'var(--font-mono)', fontSize: 11, color: 'var(--fg-2)',
           textTransform: 'uppercase', letterSpacing: '0.08em',
-          display: 'flex', alignItems: 'center', gap: 8,
+          alignItems: 'center', gap: 8,
           padding: '8px 12px', border: '1px solid var(--line)', borderRadius: 6,
           background: 'rgba(10,10,12,0.55)', backdropFilter: 'blur(20px)',
           WebkitBackdropFilter: 'blur(20px)', cursor: 'pointer',

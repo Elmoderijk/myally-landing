@@ -137,7 +137,12 @@ code, .mono { font-family: var(--font-mono); }
   gap: 20px;
 }
 
+/* De sneltoets-knop (⌘K) heeft zonder toetsenbord geen zin en viel op de
+   telefoon over de voettekst heen — daar verbergen. */
+.snel-navigeren { display: flex; }
+
 @media (max-width: 640px) {
+  .snel-navigeren { display: none; }
   .site-footer {
     padding: var(--s-6) var(--s-5);
     flex-direction: column;
