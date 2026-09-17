@@ -29,7 +29,7 @@ export const StickyFrostedNav = ({ accent }: { accent: string }) => {
       }}>
         <AllyLogo />
         <div style={{ display: 'flex', gap: 28, fontSize: 13, color: 'var(--fg-1)' }}>
-          {['Product', 'Use cases', 'Pricing', 'Documentatie'].map(l => (
+          {['Product', 'Use cases', 'Pricing', 'Docs'].map(l => (
             <a key={l} href="#" style={{ color: 'inherit', textDecoration: 'none' }} data-cursor="hover">{l}</a>
           ))}
         </div>
