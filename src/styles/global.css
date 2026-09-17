@@ -138,8 +138,10 @@ code, .mono { font-family: var(--font-mono); }
 }
 
 /* De sneltoets-knop (⌘K) heeft zonder toetsenbord geen zin en viel op de
-   telefoon over de voettekst heen — daar verbergen. */
-.snel-navigeren { display: flex; }
+   telefoon over de voettekst heen — daar verbergen. Op grotere schermen lag hij
+   over het logo in de voettekst: zodra die in beeld komt, verdwijnt hij. */
+.snel-navigeren { display: flex; transition: opacity var(--dur) var(--ease); }
+.snel-navigeren.is-weg { opacity: 0; pointer-events: none; }
 
 @media (max-width: 640px) {
   .snel-navigeren { display: none; }

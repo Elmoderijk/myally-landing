@@ -12,6 +12,16 @@ export const CommandPalette = ({ accent }: { accent: string }) => {
   const [open, setOpen] = React.useState(false);
   const [query, setQuery] = React.useState('');
   const inputRef = React.useRef<HTMLInputElement>(null);
+  // Onderaan de pagina ligt de knop over het logo in de voettekst: dan even weg.
+  const [bijVoettekst, setBijVoettekst] = React.useState(false);
+
+  React.useEffect(() => {
+    const voet = document.querySelector('.site-footer');
+    if (!voet) return;
+    const kijker = new IntersectionObserver(([e]) => setBijVoettekst(e.isIntersecting));
+    kijker.observe(voet);
+    return () => kijker.disconnect();
+  }, []);
 
   const allCommands = React.useMemo(() => [
     { label: 'Naar pricing',        action: () => { scrollToSection('pricing'); setOpen(false); } },
@@ -49,7 +59,7 @@ export const CommandPalette = ({ accent }: { accent: string }) => {
   return (
     <>
       <div
-        className="snel-navigeren"
+        className={bijVoettekst ? 'snel-navigeren is-weg' : 'snel-navigeren'}
         data-cursor="hover"
         onClick={() => setOpen(true)}
         style={{
