@@ -547,14 +547,13 @@ export const BottomCTAScroll = ({ tweaks }: { tweaks: Tweaks }) => {
 import { AllyLogo } from './Atoms';
 
 export const Footer = () => (
-  <footer style={{
-    padding: '40px 80px', borderTop: '1px solid var(--line)',
-    display: 'flex', justifyContent: 'space-between', alignItems: 'center',
+  <footer className="site-footer" style={{
+    borderTop: '1px solid var(--line)',
     fontFamily: 'var(--font-mono)', fontSize: 11, color: 'var(--fg-2)',
     textTransform: 'uppercase', letterSpacing: '0.06em',
   }}>
     <AllyLogo />
-    <div style={{ display: 'flex', gap: 20 }}>
+    <div className="site-footer__links">
       <span>© 2026</span>
       <span>privacy</span>
       <span>terms</span>
