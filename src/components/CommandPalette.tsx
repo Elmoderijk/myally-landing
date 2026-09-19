@@ -12,6 +12,16 @@ export const CommandPalette = ({ accent }: { accent: string }) => {
   const [open, setOpen] = React.useState(false);
   const [query, setQuery] = React.useState('');
   const inputRef = React.useRef<HTMLInputElement>(null);
+  // Onderaan de pagina ligt de knop over het logo in de voettekst: dan even weg.
+  const [bijVoettekst, setBijVoettekst] = React.useState(false);
+
+  React.useEffect(() => {
+    const voet = document.querySelector('.site-footer');
+    if (!voet) return;
+    const kijker = new IntersectionObserver(([e]) => setBijVoettekst(e.isIntersecting));
+    kijker.observe(voet);
+    return () => kijker.disconnect();
+  }, []);
 
   const allCommands = React.useMemo(() => [
     { label: 'Naar pricing',        action: () => { scrollToSection('pricing'); setOpen(false); } },
@@ -49,13 +59,14 @@ export const CommandPalette = ({ accent }: { accent: string }) => {
   return (
     <>
       <div
+        className={bijVoettekst ? 'snel-navigeren is-weg' : 'snel-navigeren'}
         data-cursor="hover"
         onClick={() => setOpen(true)}
         style={{
           position: 'fixed', bottom: 24, left: 24, zIndex: 49,
           fontFamily: 'var(--font-mono)', fontSize: 11, color: 'var(--fg-2)',
           textTransform: 'uppercase', letterSpacing: '0.08em',
-          display: 'flex', alignItems: 'center', gap: 8,
+          alignItems: 'center', gap: 8,
           padding: '8px 12px', border: '1px solid var(--line)', borderRadius: 6,
           background: 'rgba(10,10,12,0.55)', backdropFilter: 'blur(20px)',
           WebkitBackdropFilter: 'blur(20px)', cursor: 'pointer',
