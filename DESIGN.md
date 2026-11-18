@@ -16,7 +16,7 @@ uitgevoerd. Wijk je af, zeg dan waarom.
   versiering, labels of iconen.
 - **De spectrumlijn** (roze → lavendel → blauw → cyaan, `--spectrum`) is de
   handtekening: horizon onder de opening, lijn boven tabellen, de route bij
-  "Zo gaat het", de streep door "administratie", de rand om wat je aanwijst.
+  de vier stappen ("Let’s go!"), de streep door "administratie", de rand om wat je aanwijst.
 - **Letter.** Geist, zelf gehost. Koppen 600, strak gespatieerd (niet strakker
   dan -0.04em). De kop in de opening is de grootste letter van de pagina.
   Geist Mono alleen voor kloktijden.
@@ -41,6 +41,8 @@ uitgevoerd. Wijk je af, zeg dan waarom.
   dan staat de animatie weer klaar. Elmo wilde dit uitdrukkelijk niet gekoppeld
   aan de scrolpositie.
 - De film bij "Wijs aan" speelt alleen terwijl hij in beeld is.
+- Veelgestelde vragen klappen soepel open en dicht (hoogte en doorzichtigheid,
+  in elke browser). Zonder script werken ze gewoon als open/dicht.
 - Wie in zijn systeem "minder beweging" heeft aanstaan, krijgt alles in de
   eindstand.
 

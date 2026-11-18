@@ -311,14 +311,10 @@ section{scroll-margin-top:84px}
 .vragen summary:hover,.vragen details[open] summary{color:var(--fg)}
 .vragen summary::-webkit-details-marker{display:none}
 .plus{flex:none;width:32px;height:32px;border-radius:50%;border:1px solid var(--lijn-sterk);display:grid;place-items:center;transition:transform .4s var(--ease),border-color .3s,color .3s}
-.vragen details[open] .plus{transform:rotate(45deg);border-color:var(--fg-2);color:var(--fg)}
+.vragen details[open]:not(.sluit) .plus{transform:rotate(45deg);border-color:var(--fg-2);color:var(--fg)}
 .vragen details p{padding:0 48px 24px 0;color:var(--fg-1);max-width:62ch}
 .vragen-kop{font-size:clamp(36px,4.7vw,66px);margin-bottom:clamp(32px,5vw,64px)}
-@supports (interpolate-size:allow-keywords){
-  :root{interpolate-size:allow-keywords}
-  .vragen details::details-content{block-size:0;overflow:hidden;transition:block-size .5s var(--ease),content-visibility .5s allow-discrete}
-  .vragen details[open]::details-content{block-size:auto}
-}
+.vragen .antwoord{overflow:hidden}
 
 /* ── slot + voet ── */
 .slot{position:relative;text-align:center;padding:clamp(96px,12vw,176px) 0 0;overflow:hidden;background:linear-gradient(180deg,var(--bg) 0%,#0D0C18 60%,#141130 100%)}
@@ -332,10 +328,7 @@ section{scroll-margin-top:84px}
 .slot-ally .ooglid{top:24.4%;height:9.33%}
 .slot-ally .oog{top:20.5%;height:7.9%}
 .slot .wrap{position:relative}
-.voet{position:relative;border-top:1px solid transparent;border-image:var(--spectrum) 1;padding:28px 0 0;font-size:14px;color:var(--fg-2);overflow:hidden;background:var(--bg)}
-.voet .wrap{display:flex;flex-wrap:wrap;gap:12px 28px;align-items:center}
-.voet a{color:var(--fg-2);text-decoration:none;display:inline-block;padding:12px 0;margin:-12px 0}
-.voet a:hover{color:var(--fg)}
+.voet{position:relative;border-top:1px solid transparent;border-image:var(--spectrum) 1;padding:0 0 clamp(48px,7vw,112px);font-size:14px;color:var(--fg-2);overflow:hidden;background:var(--bg)}
 .woordmerk{font-size:clamp(80px,22vw,380px);font-weight:600;letter-spacing:-.04em;line-height:1.02;color:var(--lijn);white-space:nowrap;text-align:center;margin-top:clamp(24px,4vw,56px);padding-bottom:.06em;user-select:none}
 .woordmerk i{font-style:normal;color:#3A2B7A}
 
