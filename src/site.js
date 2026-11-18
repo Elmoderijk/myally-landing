@@ -58,8 +58,8 @@
   // Melding bij Ally: rustig van links binnen, ruim blijven staan, naar rechts weer weg
   const meldingen = [
     ['08:12', 'Nieuwe mail van familie Verbeek: badkamer verbouwen in maart. Ik maak er een aanvraag van.'],
-    ['08:13', 'Voorstel klaar voor familie Verbeek: antwoord, opnamebezoek dinsdag 10:00 en een conceptofferte.'],
-    ['09:40', 'Verstuurd na jouw akkoord. Het opnamebezoek staat in de planning.'],
+    ['08:13', 'Voorstel klaar voor familie Verbeek: antwoord, afspraakvoorstel voor dinsdag 10:00 en een conceptofferte.'],
+    ['09:40', 'Verstuurd na jouw akkoord. De afspraak staat voorlopig in de planning.'],
   ];
   const m = document.getElementById('melding'); let mi = 0;
   const toon = () => {
@@ -142,9 +142,9 @@
     na(5700, () => { klik(); fase(4); });
     [...zin].forEach((_, i) => na(6300 + i * 55, () => { notitie.textContent = zin.slice(0, i + 1); }));
     na(9300, () => naar('.verstuur'));
-    na(10200, () => { klik(); fase(5); status.textContent = 'Aanvraag verstuurd'; });
+    na(10200, () => { klik(); fase(5); status.textContent = 'Bouwverzoek verstuurd'; });
     na(10800, () => naar('.app-tabel tbody', .3, .95));
-    na(12000, () => { fase(6); status.textContent = 'Wij bouwen het'; });
+    na(12000, () => { fase(6); status.textContent = 'Ally bouwt het'; });
     na(13800, () => { fase(7); status.textContent = 'Nieuw in je app'; });
     na(19500, speel);
   };
@@ -158,6 +158,24 @@
     knoppen.forEach(x => x.setAttribute('aria-pressed', x === k));
     document.querySelectorAll('.stand,.modus').forEach(d => d.classList.toggle('aan', d.dataset.stand === k.dataset.stand));
   }));
+
+  // Vragen klappen soepel open en dicht; zonder script gewoon open/dicht
+  if (!stil) document.querySelectorAll('.vragen details').forEach(d => {
+    const a = d.querySelector('.antwoord');
+    d.querySelector('summary').addEventListener('click', e => {
+      e.preventDefault();
+      const van = d.open ? a.getBoundingClientRect().height : 0; // dicht meet Chrome nog de volle hoogte
+      a.getAnimations().forEach(x => x.cancel());
+      if (!d.open || d.classList.contains('sluit')) {
+        d.classList.remove('sluit'); d.open = true;
+        a.animate([{ height: van + 'px', opacity: van ? 1 : 0 }, { height: a.scrollHeight + 'px', opacity: 1 }], { duration: 560, easing: 'cubic-bezier(.33,1,.68,1)' });
+      } else {
+        d.classList.add('sluit');
+        a.animate([{ height: van + 'px', opacity: 1 }, { height: '0px', opacity: 0 }], { duration: 440, easing: 'cubic-bezier(.65,0,.35,1)' })
+          .onfinish = () => { d.open = false; d.classList.remove('sluit'); };
+      }
+    });
+  });
 
   // Mobiel menu sluit na een keuze
   document.querySelectorAll('.uitklap a').forEach(a => a.addEventListener('click', () => a.closest('details').open = false));
