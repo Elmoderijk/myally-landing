@@ -9,14 +9,20 @@ const locStart = conf.indexOf('location ~*')
 const scopes = { server: conf.slice(0, locStart), cachelocatie: conf.slice(locStart) }
 
 describe('beveiligingskoppen landing', () => {
-  for (const [naam, tekst] of Object.entries(scopes)) {
-    test(`aanval: framing, sniffing en vreemde scripts worden geweigerd (${naam})`, () => {
-      assert.match(tekst, /add_header Content-Security-Policy "[^"]*frame-ancestors 'none'/)
-      assert.match(tekst, /add_header Content-Security-Policy "[^"]*script-src 'self'(;|")/)
-      assert.match(tekst, /add_header X-Content-Type-Options "nosniff" always/)
-      assert.match(tekst, /add_header X-Frame-Options "DENY" always/)
-    })
+  const controleer = (tekst) => {
+    assert.match(tekst, /add_header Content-Security-Policy "[^"]*frame-ancestors 'none'/)
+    assert.match(tekst, /add_header Content-Security-Policy "[^"]*script-src 'self'(;|")/)
+    assert.match(tekst, /add_header X-Content-Type-Options "nosniff" always/)
+    assert.match(tekst, /add_header X-Frame-Options "DENY" always/)
   }
+
+  test('aanval: framing, sniffing en vreemde scripts worden geweigerd (server)', () => {
+    controleer(scopes.server)
+  })
+
+  test('aanval: framing, sniffing en vreemde scripts worden geweigerd (cachelocatie)', () => {
+    controleer(scopes.cachelocatie)
+  })
 
   test('weg: eigen script, stijl, lettertypen en afbeeldingen blijven toegestaan', () => {
     const csp = conf.match(/Content-Security-Policy "([^"]*)"/)[1]
