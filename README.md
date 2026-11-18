@@ -1,13 +1,13 @@
 # MyAlly landing site
 
-De marketingsite van MyAlly (myally.nl). Gebouwd met Vite + React (TypeScript).
+De marketingsite van MyAlly (myally.nl). Eén statische pagina (HTML, CSS, een klein script), gebundeld met Vite.
 
 ## Lokaal starten
 
 ```
 npm install
 npm run dev        # start de ontwikkelserver
-npm run build       # bouwt de productieversie (tsc -b && vite build)
+npm run build       # bouwt de productieversie (vite build)
 npm run preview     # bekijk de gebouwde versie lokaal
 ```
 
@@ -27,19 +27,20 @@ wordt uitgerold.
 
 ## Hoe de map in elkaar zit
 
-- `index.html` — de basispagina; laadt `src/main.tsx`.
-- `src/main.tsx` — start de React-app in de pagina.
-- `src/App.tsx` — de opbouw van de hele pagina: welke onderdelen in welke
-  volgorde, en de teksten/instellingen (koppen, kleuren) bovenaan het bestand.
-- `src/components/` — de bouwstenen van de pagina: `Nav.tsx` (navigatiebalk),
-  `HeroSection.tsx` (openingsblok met titel), `Sections.tsx` (de overige
-  secties: cijfers, functies, hoe-het-werkt, showcase, tijdlijn, vergelijking,
-  testimonial, FAQ, prijzen, slot-oproep en footer), `AllyAvatar.tsx` (de
-  Ally-figuur), `Atoms.tsx` (knoppen, iconen, logo, achtergronden),
-  `ScrollEffects.tsx` (scrolgedrag zoals de voortgangsbalk en inzoomanimaties),
-  `Polish.tsx` (eigen cursor, korrelfilter), `CommandPalette.tsx`
-  (het opdrachtvenster/sneltoetsmenu).
-- `src/styles/global.css` — kleuren, lettertype en basisstijl voor de site.
-- `src/assets/` — afbeeldingen en logo's die de pagina gebruikt.
+De site is één statische pagina, zonder framework. Vite bundelt hem alleen
+(`npm run build` → `dist/`), nginx serveert het resultaat.
+
+- `index.html` — de hele pagina: alle teksten en de opbouw, sectie voor sectie.
+  Een tekst aanpassen doe je hier.
+- `src/site.css` — de stijl: kleuren, letters, indeling, animaties. De afspraken
+  erachter staan in `DESIGN.md`.
+- `src/site.js` — het gedrag: sterren, de ogen van Ally, het meelopende
+  appvenster, de film bij "Wijs aan", de schakelaar. Zonder dit script staat
+  alles in de eindstand en blijft de pagina leesbaar.
+- `src/assets/` — wat de pagina gebruikt: `ally.webp` (de robot), `bergen.webp`
+  (de nachtfoto) en `fonts/` (Geist en Geist Mono, zelf gehost, licentie erbij).
+- `src/assets/bron/` — de originele afbeeldingen waar de webp-versies van zijn
+  gemaakt. Komen niet in de gebouwde site.
+- `public/favicon.svg` — het pictogram in het tabblad.
 - `Dockerfile` — bouwt de site en verpakt hem met nginx voor uitrol.
 - `nginx.conf` — instellingen van de webserver die de gebouwde site serveert.
