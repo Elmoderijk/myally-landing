@@ -121,35 +121,39 @@
     }
   }
 
-  // Aanwijzen: een korte film in het appvenster, speelt alleen terwijl hij in beeld is
-  const film = document.getElementById('aanwijs'), doek2 = film.querySelector('.film-inhoud');
-  const fq = (q) => film.querySelector(q), cursor = fq('.cursor'), notitie = fq('.notitie-tekst'), status = fq('.status');
-  const astappen = [...document.querySelectorAll('.aanwijs-stap')], zin = 'Ik wil automatische herinneringen bij offertes';
-  let klokken = [];
-  const na = (ms, f) => klokken.push(setTimeout(f, ms));
-  const stop = () => { klokken.forEach(clearTimeout); klokken = []; };
-  const fase = (n) => { film.dataset.fase = n; astappen.forEach((a, i) => a.classList.toggle('actief', i === (n < 4 ? 0 : n === 4 ? 1 : 2))); };
-  const naar = (q, fx = .5, fy = .5) => { const a = doek2.getBoundingClientRect(), b = fq(q).getBoundingClientRect(); cursor.style.transform = `translate(${b.left - a.left + b.width * fx}px,${b.top - a.top + b.height * fy}px)`; };
-  const klik = () => { cursor.classList.remove('klik'); void cursor.offsetWidth; cursor.classList.add('klik'); };
-  const speel = () => {
-    stop(); notitie.textContent = ''; status.textContent = ''; fase(0); naar('.app-tabel tbody', .25, .6);
-    na(900, () => naar('.widget-knop'));
-    na(1900, () => { klik(); fase(1); });
-    na(2600, () => naar('.widget-menu .wijs', .35));
-    na(3500, () => { klik(); fase(2); });
-    na(4000, () => naar('.app-tabel thead', .5));
-    na(5000, () => fase(3));
-    na(5700, () => { klik(); fase(4); });
-    [...zin].forEach((_, i) => na(6300 + i * 55, () => { notitie.textContent = zin.slice(0, i + 1); }));
-    na(9300, () => naar('.verstuur'));
-    na(10200, () => { klik(); fase(5); status.textContent = 'Bouwverzoek verstuurd'; });
-    na(10800, () => naar('.app-tabel tbody', .3, .95));
-    na(12000, () => { fase(6); status.textContent = 'Ally bouwt het'; });
-    na(13800, () => { fase(7); status.textContent = 'Nieuw in je app'; });
-    na(19500, speel);
-  };
-  if (stil) { fase(7); status.textContent = 'Nieuw in je app'; cursor.style.display = 'none'; }
-  else new IntersectionObserver(([e]) => { if (e.isIntersecting) speel(); else { stop(); fase(0); } }, { threshold: .35 }).observe(film);
+  // Aanwijzen: een korte film in het appvenster, speelt alleen terwijl hij in beeld is.
+  // De sectie staat uit tot aanwijzen vanuit de gewone app werkt (Elmo, 2026-11-19).
+  const film = document.getElementById('aanwijs');
+  if (film) {
+    const doek2 = film.querySelector('.film-inhoud');
+    const fq = (q) => film.querySelector(q), cursor = fq('.cursor'), notitie = fq('.notitie-tekst'), status = fq('.status');
+    const astappen = [...document.querySelectorAll('.aanwijs-stap')], zin = 'Ik wil automatische herinneringen bij offertes';
+    let klokken = [];
+    const na = (ms, f) => klokken.push(setTimeout(f, ms));
+    const stop = () => { klokken.forEach(clearTimeout); klokken = []; };
+    const fase = (n) => { film.dataset.fase = n; astappen.forEach((a, i) => a.classList.toggle('actief', i === (n < 4 ? 0 : n === 4 ? 1 : 2))); };
+    const naar = (q, fx = .5, fy = .5) => { const a = doek2.getBoundingClientRect(), b = fq(q).getBoundingClientRect(); cursor.style.transform = `translate(${b.left - a.left + b.width * fx}px,${b.top - a.top + b.height * fy}px)`; };
+    const klik = () => { cursor.classList.remove('klik'); void cursor.offsetWidth; cursor.classList.add('klik'); };
+    const speel = () => {
+      stop(); notitie.textContent = ''; status.textContent = ''; fase(0); naar('.app-tabel tbody', .25, .6);
+      na(900, () => naar('.widget-knop'));
+      na(1900, () => { klik(); fase(1); });
+      na(2600, () => naar('.widget-menu .wijs', .35));
+      na(3500, () => { klik(); fase(2); });
+      na(4000, () => naar('.app-tabel thead', .5));
+      na(5000, () => fase(3));
+      na(5700, () => { klik(); fase(4); });
+      [...zin].forEach((_, i) => na(6300 + i * 55, () => { notitie.textContent = zin.slice(0, i + 1); }));
+      na(9300, () => naar('.verstuur'));
+      na(10200, () => { klik(); fase(5); status.textContent = 'Bouwverzoek verstuurd'; });
+      na(10800, () => naar('.app-tabel tbody', .3, .95));
+      na(12000, () => { fase(6); status.textContent = 'Ally bouwt het'; });
+      na(13800, () => { fase(7); status.textContent = 'Nieuw in je app'; });
+      na(19500, speel);
+    };
+    if (stil) { fase(7); status.textContent = 'Nieuw in je app'; cursor.style.display = 'none'; }
+    else new IntersectionObserver(([e]) => { if (e.isIntersecting) speel(); else { stop(); fase(0); } }, { threshold: .35 }).observe(film);
+  }
 
   // Schakelaar: uit / voorstellen / zelf doen
   const schakel = document.getElementById('schakel'), knoppen = [...schakel.querySelectorAll('button')];
