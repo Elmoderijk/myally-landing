@@ -1,14 +1,331 @@
 <!DOCTYPE html>
 <html lang="nl">
-  <head>
-    <meta charset="UTF-8" />
-    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="description" content="My Ally — jouw eigen AI-agent in jouw eigen app. Altijd aan. Nooit moe." />
-    <title>My Ally</title>
-  </head>
-  <body>
-    <div id="root"></div>
-    <script type="module" src="/src/main.tsx"></script>
-  </body>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>My Ally: je eigen bedrijfsapp, met Ally die het werk doet</title>
+<meta name="description" content="Je eigen bedrijfsapp, met Ally die het werk doet. Jij houdt tijd over voor je vak. Wij bouwen en beheren alles.">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<meta name="theme-color" content="#0A0A0C">
+<meta property="og:title" content="My Ally: je eigen bedrijfsapp, met Ally die het werk doet">
+<meta property="og:description" content="Ally zet offertes, planning en antwoorden voor je klaar. Jij keurt goed. Wij bouwen en beheren alles.">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="nl_NL">
+<link rel="stylesheet" href="/src/site.css">
+
+</head>
+<body>
+<!--
+THESIS: My Ally zoals het merk al bestond: de nacht, het violet en Ally de robot, nu met een verhaal dat klopt en een product dat je ziet werken. Weigert de standaard AI-pagina: geen gloed, geen kaartjesrooster, geen verzonnen cijfers.
+OWN-WORLD: bijna-zwarte nacht (#0A0A0C) met sterren en een violette dageraad aan de horizon; Geist groot en strak; violet (#7C4DF0/#A78BFA) alleen voor actie en Ally; de spectrumlijn roze-lavendel-blauw-cyaan als horizon en tabelkop; filmkorrel; een donker appvenster als bewijs.
+STORY: bezoeker ziet Ally die hem aankijkt, scrolt door één klantmail van binnenkomst tot akkoord in een echt appvenster, ziet wat wegvalt, wie de regie houdt, wat hij krijgt, waarom nu, en mailt.
+FIRST VIEWPORT: links de kop in vier regels met "Ally" in violet op de spectrumlijn en de violette knop; rechts Ally levensgroot uit de onderrand, ogen volgen de cursor, melding schuift van links in.
+FORM: door Elmo vastgezet (stijl oude site + robot). Afspraken: DESIGN.md.
+-->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs>
+    <linearGradient id="merkverloop" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#378ADD"/><stop offset="100%" stop-color="#9D96F0"/></linearGradient>
+    <symbol id="i-merk" viewBox="0 0 92 92"><path d="M26 68 46 22 66 68 56 45 46 57 36 45Z" fill="none" stroke="url(#merkverloop)" stroke-width="5" stroke-linejoin="round" stroke-linecap="round"/></symbol>
+    <symbol id="i-ally" viewBox="0 0 92 92"><path d="M26 68 46 22 66 68 56 45 46 57 36 45Z" fill="none" stroke="currentColor" stroke-width="7" stroke-linejoin="round" stroke-linecap="round"/></symbol>
+    <symbol id="i-pijl" viewBox="0 0 24 24"><path d="M4 12h15M13 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+    <symbol id="i-check" viewBox="0 0 24 24"><path d="m4.5 12.5 5 5L19.5 7" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+    <symbol id="i-hand" viewBox="0 0 24 24"><path d="M12 3v9M8 6v7M16 6v7M5 11v3a7 7 0 0 0 14 0V9" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></symbol>
+    <symbol id="i-terug" viewBox="0 0 24 24"><path d="M9 7 4 12l5 5M4 12h11a5 5 0 0 1 0 10h-3" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+    <symbol id="i-uit" viewBox="0 0 24 24"><rect x="2.5" y="7" width="19" height="10" rx="5" fill="none" stroke="currentColor" stroke-width="1.7"/><circle cx="7.5" cy="12" r="2.6" fill="currentColor"/></symbol>
+    <symbol id="i-plus" viewBox="0 0 12 12"><path d="M6 1v10M1 6h10" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></symbol>
+    <symbol id="i-kruis" viewBox="0 0 24 24"><path d="M6 6l12 12M18 6 6 18" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></symbol>
+    <symbol id="i-menu" viewBox="0 0 24 24"><path d="M4 8h16M4 16h16" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></symbol>
+  </defs>
+</svg>
+
+<header class="kop" id="kop">
+  <div class="wrap">
+    <a class="merk" href="#top" aria-label="My Ally, naar boven"><svg width="26" height="26"><use href="#i-merk"/></svg><span>My Ally<i>.</i></span></a>
+    <nav class="menu" aria-label="Hoofdmenu">
+      <a href="#hoe">Hoe het werkt</a>
+      <a href="#wat">Wat je krijgt</a>
+      <a href="#vragen">Vragen</a>
+    </nav>
+    <a class="knop knop-primair" href="#contact">Kennismaken</a>
+    <details class="menu-mobiel">
+      <summary aria-label="Menu"><svg class="i-open" width="22" height="22"><use href="#i-menu"/></svg><svg class="i-dicht" width="22" height="22"><use href="#i-kruis"/></svg></summary>
+      <nav class="uitklap" aria-label="Menu">
+        <a href="#hoe">Hoe het werkt</a>
+        <a href="#wat">Wat je krijgt</a>
+        <a href="#vragen">Vragen</a>
+        <a class="knop knop-primair" href="#contact">Plan een kennismaking <svg><use href="#i-pijl"/></svg></a>
+      </nav>
+    </details>
+  </div>
+</header>
+
+<main id="top">
+  <section class="held">
+    <canvas class="sterren" id="sterren" aria-hidden="true"></canvas>
+    <div class="wrap held-raster">
+      <div class="held-tekst">
+        <h1>
+          <span class="regel"><span>Je eigen</span></span>
+          <span class="regel"><span>bedrijfsapp.</span></span>
+          <span class="regel zacht"><span>Met <em class="accent">Ally</em> die het</span></span>
+          <span class="regel zacht"><span>werk doet.</span></span>
+        </h1>
+        <p class="lead">Ally zet offertes, planning en antwoorden voor je klaar. Jij keurt goed, en houdt tijd over voor je klanten, je team en je werk. Wij bouwen de app rond hoe jouw bedrijf werkt, en beheren alles.</p>
+        <div class="acties">
+          <a class="knop knop-primair" href="#contact">Plan een kennismaking <svg><use href="#i-pijl"/></svg></a>
+          <a class="knop" href="#hoe">Zo werkt Ally</a>
+        </div>
+      </div>
+      <div class="ally-podium">
+        <div class="ally-intro">
+          <div class="ally-parallax" id="ally-kijkt" data-kijkt="0.178">
+            <div class="ally-figuur" id="ally">
+              <img src="/src/assets/ally.webp" alt="Ally, de AI-collega van My Ally" width="912" height="1183">
+              <span class="oog links" aria-hidden="true"><i class="glans"></i></span><span class="oog rechts" aria-hidden="true"><i class="glans"></i></span>
+              <span class="ooglid links" aria-hidden="true"></span><span class="ooglid rechts" aria-hidden="true"></span>
+            </div>
+          </div>
+          <div class="melding komt" id="melding" aria-live="polite">
+            <div class="melding-kop"><svg width="16" height="16"><use href="#i-ally"/></svg>Ally<span class="tijd" id="m-tijd">08:13</span></div>
+            <p id="m-tekst">Voorstel klaar voor familie Verbeek: antwoord, afspraakvoorstel voor dinsdag 10:00 en een conceptofferte.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Van klantmail tot akkoord -->
+  <section class="sectie" id="hoe">
+    <div class="wrap">
+      <div class="sectie-kop">
+        <h2>Van klantmail tot akkoord. <span class="zacht">Ally doet de voorzet.</span></h2>
+        <p>Een voorbeeld uit een bouwbedrijf. Ally leest mee, zet alles klaar, en wacht op jou.</p>
+      </div>
+      <div class="scene-raster" id="scene">
+        <div class="kader" aria-hidden="true">
+          <div class="venster-balk"><b><svg width="18" height="18"><use href="#i-merk"/></svg>Jouw app</b><span class="tab aan">Mailbox</span><span class="tab">Aanvragen</span><span class="tab">Planning</span><span class="tab">Offertes</span><span class="tijd klok" id="klok">08:12</span></div>
+        </div>
+
+        <article class="stap actief" data-tab="Mailbox" data-tijd="08:12">
+          <h3>Mail komt binnen</h3>
+          <p>Familie Verbeek wil in maart de badkamer verbouwen en vraagt een offerte op. Jij bent bij een klant.</p>
+        </article>
+        <div class="scherm actief" aria-hidden="true">
+          <div class="scherm-balk"><b><svg width="18" height="18"><use href="#i-merk"/></svg>Jouw app</b><span>Mailbox</span><span class="tijd">08:12</span></div>
+          <div class="venster-inhoud">
+            <div class="mail nieuw"><i></i><b>Familie Verbeek</b><span class="tijd">08:12</span><p>Badkamer verbouwen in maart · Kunnen jullie in maart onze badkamer verbouwen? Graag een offerte.</p></div>
+            <div class="mail"><i></i><b>Mark de Wit</b><span class="tijd">gisteren</span><p>Levering radiatoren · De radiatoren voor de Parklaan komen donderdag.</p></div>
+            <div class="mail"><i></i><b>J. Hendriks</b><span class="tijd">gisteren</span><p>Akkoord offerte dakkapel · Wij gaan akkoord met de offerte.</p></div>
+            <div class="mail"><i></i><b>Karin Smit</b><span class="tijd">maandag</span><p>Factuur bestelling 2291 · In de bijlage vindt u de factuur van uw bestelling.</p></div>
+          </div>
+        </div>
+
+        <article class="stap" data-tab="Aanvragen" data-tijd="08:12">
+          <h3>Ally leest mee</h3>
+          <p>Ally maakt een aanvraag aan, koppelt klant en adres, en kijkt waar ruimte in je planning is.</p>
+        </article>
+        <div class="scherm" aria-hidden="true">
+          <div class="scherm-balk"><b><svg width="18" height="18"><use href="#i-merk"/></svg>Jouw app</b><span>Aanvragen</span><span class="tijd">08:12</span></div>
+          <div class="venster-inhoud">
+            <div class="mail nieuw open"><i></i><b>Familie Verbeek</b><span class="tijd">08:12</span><p>Kunnen jullie in maart onze badkamer verbouwen? Graag een offerte.</p></div>
+            <div class="ally-kop"><svg width="16" height="16"><use href="#i-ally"/></svg>Ally leest mee</div>
+            <div class="ally-regel"><svg width="18" height="18"><use href="#i-check"/></svg><span><b>Aanvraag aangemaakt</b> · Badkamer verbouwen</span></div>
+            <div class="ally-regel"><svg width="18" height="18"><use href="#i-check"/></svg><span><b>Klant en adres gekoppeld</b> · Familie Verbeek</span></div>
+            <div class="ally-regel"><svg width="18" height="18"><use href="#i-check"/></svg><span><b>Planning bekeken</b> · dinsdag 10:00 is vrij</span></div>
+          </div>
+        </div>
+
+        <article class="stap" data-tab="Mailbox" data-tijd="08:13">
+          <h3>Voorstel staat klaar</h3>
+          <p>Een antwoord in jouw woorden, een afspraakvoorstel en een conceptofferte.</p>
+        </article>
+        <div class="scherm" aria-hidden="true">
+          <div class="scherm-balk"><b><svg width="18" height="18"><use href="#i-merk"/></svg>Jouw app</b><span>Mailbox</span><span class="tijd">08:13</span></div>
+          <div class="venster-inhoud">
+            <div class="ally-kop" style="margin-top:0"><svg width="16" height="16"><use href="#i-ally"/></svg>Voorstel van Ally</div>
+            <div class="blok"><div class="blok-label">Antwoord aan familie Verbeek</div><p>Beste familie Verbeek, dank voor uw bericht. We komen graag langs om de badkamer te bekijken en uw wensen door te lopen. Past dinsdag om 10:00 uur?</p></div>
+            <div class="blok-rij">
+              <div class="blok voorlopig"><div class="blok-label">Afspraakvoorstel · voorlopig</div><p>Dinsdag 10:00</p></div>
+              <div class="blok"><div class="blok-label">Conceptofferte</div><p>Badkamer verbouwen</p></div>
+            </div>
+            <div class="venster-acties"><span class="vknop primair">Akkoord en versturen</span><span class="vknop">Aanpassen</span></div>
+          </div>
+        </div>
+
+        <article class="stap" data-tab="Planning" data-tijd="09:40">
+          <h3>Jij beslist</h3>
+          <p>Even de offerte nalopen, iets aanpassen, versturen. Niets gaat de deur uit zonder jouw akkoord.</p>
+        </article>
+        <div class="scherm" aria-hidden="true">
+          <div class="scherm-balk"><b><svg width="18" height="18"><use href="#i-merk"/></svg>Jouw app</b><span>Planning</span><span class="tijd">09:40</span></div>
+          <div class="venster-inhoud">
+            <div class="ally-regel" style="padding-top:2px"><svg width="18" height="18"><use href="#i-check"/></svg><span><b>Antwoord verstuurd</b> · na jouw akkoord, aan familie Verbeek</span></div>
+            <div class="ally-regel"><svg width="18" height="18"><use href="#i-check"/></svg><span><b>Conceptofferte bewaard</b> · bij de aanvraag</span></div>
+            <div class="week"><div>ma</div><div>di<em class="afspraak">10:00 Verbeek, voorlopig</em></div><div>wo</div><div>do</div><div>vr</div></div>
+            <p class="ally-noot">Zegt de klant ja, dan zet Ally de afspraak vast.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Minder administratie -->
+  <section class="sectie groot" id="tijd" style="padding-top:0">
+    <div class="wrap">
+      <h2 data-rol><span class="minder">Minder <span class="streep">administratie.</span></span> <span class="meer">Meer ondernemen.</span></h2>
+      <p>Je bent je bedrijf niet begonnen om offertes te typen. Ally neemt het werk over, zodat jij je tijd kan besteden aan waar je goed in bent.</p>
+      <table class="tabel grootboek" id="grootboek" data-rol="kop">
+        <thead><tr><th>Zonder Ally</th><th>Met Ally</th></tr></thead>
+        <tbody>
+          <tr><td class="zonder"><span>'s Avonds offertes typen aan de keukentafel</span></td><td class="met">De conceptofferte staat klaar, jij loopt hem na</td></tr>
+          <tr><td class="zonder"><span>Elke mail lezen, de klantdetails opzoeken en beantwoorden</span></td><td class="met">Ally leest mee, zoekt uit en stelt voor</td></tr>
+          <tr><td class="zonder"><span>Heen en weer mailen om een afspraak te prikken</span></td><td class="met">Ally stelt een moment voor; zegt de klant ja, dan staat het vast</td></tr>
+          <tr><td class="zonder"><span>Zoeken waar die ene prijs of afspraak ook alweer stond</span></td><td class="met">Vraag het aan Ally, en je hebt het antwoord</td></tr>
+          <tr><td class="zonder"><span>Na een akkoord alles zelf in gang zetten</span></td><td class="met">De klant zegt akkoord, en het project staat al klaar</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <!-- Regie -->
+  <section class="sectie" id="regie" style="padding-top:0">
+    <div class="wrap">
+      <div class="sectie-kop">
+        <h2>Jij houdt de regie. <span class="zacht">Per taak.</span></h2>
+        <p>Je bepaalt zelf hoeveel Ally mag. Begin voorzichtig, geef meer ruimte als het bevalt.</p>
+      </div>
+      <div class="regie-raster">
+        <div>
+          <div class="schakel" id="schakel" role="group" aria-label="Hoeveel mag Ally zelf doen?">
+            <button type="button" data-stand="uit" aria-pressed="false">Uit</button>
+            <button type="button" data-stand="voorstellen" aria-pressed="true">Voorstellen</button>
+            <button type="button" data-stand="zelf" aria-pressed="false">Autonoom</button>
+          </div>
+          <div class="schakel-uitleg" aria-live="polite">
+            <div class="stand" data-stand="uit"><h3>Uit</h3><p>Je werkt zoals je gewend bent. De app doet alles wat hij moet doen, Ally kijkt niet mee.</p></div>
+            <div class="stand aan" data-stand="voorstellen"><h3>Voorstellen</h3><p>Ally zet het klaar: een antwoord, een planning, een conceptofferte. Jij kijkt, past aan en drukt op versturen.</p></div>
+            <div class="stand" data-stand="zelf"><h3>Autonoom</h3><p>Ally handelt het af zodra de klant al ja heeft gezegd. Mailt de klant “akkoord” op je offerte? Dan staat de offerte op akkoord en is het project aangemaakt. Schrijft hij “dinsdag 10 uur past”? Dan staat de afspraak vast in je planning. Nieuwe aanvraag van een bekende klant? Die staat al klaar. Je ziet wat Ally deed, en draait het met één klik terug.</p></div>
+          </div>
+        </div>
+        <div class="regie-venster" aria-hidden="true">
+          <div class="venster-balk"><b><svg width="18" height="18"><use href="#i-merk"/></svg>Jouw app</b><span class="tab aan">Mailbox</span><span class="tijd klok">14:06</span></div>
+          <div class="venster-inhoud">
+            <div class="mail nieuw open"><i></i><b>J. Hendriks</b><span class="tijd">14:06</span><p>Wij gaan akkoord met de offerte voor de dakkapel. Wanneer kunnen jullie beginnen?</p></div>
+            <div class="modi">
+              <div class="modus" data-stand="uit">
+                <div class="zelf-regel">Offerte op akkoord zetten</div>
+                <div class="zelf-regel">Project aanmaken</div>
+                <div class="zelf-regel">Antwoord typen</div>
+                <p class="ally-noot">Ally staat uit. Je doet het zelf, zoals je gewend bent.</p>
+              </div>
+              <div class="modus aan" data-stand="voorstellen">
+                <div class="ally-kop"><svg width="16" height="16"><use href="#i-ally"/></svg>Voorstel van Ally</div>
+                <div class="blok"><div class="blok-label">Klaargezet</div><p>Offerte op akkoord zetten, project aanmaken en een antwoord met een startdatum.</p></div>
+                <div class="venster-acties"><span class="vknop primair">Doen</span><span class="vknop">Aanpassen</span></div>
+                <p class="ally-noot">Ally wacht op jou.</p>
+              </div>
+              <div class="modus" data-stand="zelf">
+                <div class="ally-kop"><svg width="16" height="16"><use href="#i-ally"/></svg>Ally heeft het afgehandeld</div>
+                <div class="ally-regel"><svg width="18" height="18"><use href="#i-check"/></svg><span><b>Offerte op akkoord gezet</b></span></div>
+                <div class="ally-regel"><svg width="18" height="18"><use href="#i-check"/></svg><span><b>Project aangemaakt</b> · Dakkapel Hendriks</span></div>
+                <div class="venster-acties"><span class="vknop">Ongedaan maken</span></div>
+                <p class="ally-noot">Het antwoord aan de klant staat klaar voor jou.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+        <ul class="punten">
+          <li><svg width="24" height="24"><use href="#i-hand"/></svg><div><b>Niets gaat de deur uit zonder jou</b><span>Mail naar klanten, offertes en facturen verstuur je altijd zelf.</span></div></li>
+          <li><svg width="24" height="24"><use href="#i-terug"/></svg><div><b>Wat Ally zelf doet, draai je terug</b><span>Autonoom kan alleen bij dingen die met één klik ongedaan zijn, en je ziet altijd wat er gebeurde.</span></div></li>
+          <li><svg width="24" height="24"><use href="#i-uit"/></svg><div><b>Uitzetten mag altijd</b><span>Per taak, of helemaal. Je app blijft gewoon werken.</span></div></li>
+        </ul>
+    </div>
+  </section>
+
+  <!-- Wat je krijgt -->
+  <section class="sectie" id="wat" style="padding-top:0">
+    <div class="wrap kolommen">
+      <div class="kolom-kop">
+        <h2>Eén partij voor je software. <span class="zacht">Van bouwen tot beheren.</span></h2>
+        <p>Je krijgt een app die past en meegroeit met je bedrijf.</p>
+      </div>
+      <table class="tabel" data-rol="kop">
+        <thead><tr><th>Onderdeel</th><th>Wat het voor je doet</th></tr></thead>
+        <tbody>
+          <tr><td class="sterk">Je eigen app</td><td>Maatwerk voor jouw processen en workflows. Precies wat jij nodig hebt en afgestemd op jouw bedrijf.</td></tr>
+          <tr><td class="sterk">AI-powered</td><td>AI zit verwerkt in je app, op de plekken waar het ertoe doet, zodat handmatig werk verleden tijd is.</td></tr>
+          <tr><td class="sterk">Beheer</td><td>Hosting, beveiliging, back-ups en updates. Jij hoeft er niets voor te doen of te weten.</td></tr>
+          <tr><td class="sterk">Doorbouwen</td><td>Nieuwe wens? Vraag het aan Ally. Kleine verbeteringen zitten erin; bij iets groters hoor je vooraf of het binnen je abonnement past.</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <!-- Waarom nu -->
+  <section class="nacht" id="waaromnu">
+    <div class="nacht-beeld" aria-hidden="true"></div>
+    <div class="wrap">
+      <h2>AI gaat niet meer weg. <span class="zacht">Ally leert ook van jou.</span></h2>
+      <p>Hoe langer je met Ally werkt, hoe beter hij je bedrijf kent: je klanten, je werkwijze, hoe jij het wilt hebben. Die voorsprong haal je niet in door later te beginnen. Begin nu met voorstellen, geef Ally meer ruimte als het bevalt, en groei mee terwijl AI elk jaar meer kan.</p>
+    </div>
+  </section>
+
+  <!-- Traject -->
+  <section class="sectie" id="traject">
+    <div class="wrap">
+      <div class="sectie-kop">
+        <h2>Let’s go!</h2>
+        <p>Je hebt geen technische achtergrond nodig. Vertel hoe je werkt en waar je tegenaan loopt. Wij vertalen deze processen naar jouw app.</p>
+      </div>
+      <ol class="traject" data-rol>
+        <li><h3>Kennismaken</h3><p>Met een kop koffie bespreken we hoe je werkt en zoomen we in op de knelpunten.</p></li>
+        <li><h3>Voorstel</h3><p>Je ontvangt een voorstel van jouw op maat gemaakte app in jouw huisstijl, een prijsopgave en een planning.</p></li>
+        <li><h3>Bouwen</h3><p>Eerst wat het meeste tijd scheelt. Jij test mee en geeft feedback.</p></li>
+        <li><h3>In gebruik</h3><p>Je team werkt erin, Ally doet mee, wij beheren en bouwen door.</p></li>
+      </ol>
+    </div>
+  </section>
+
+  <!-- Vragen -->
+  <section class="sectie" id="vragen" style="padding-top:0">
+    <div class="wrap">
+      <h2 class="vragen-kop">Veelgestelde vragen.</h2>
+      <div class="vragen">
+        <details open><summary>Moet ik iets van techniek weten? <span class="plus"><svg width="12" height="12"><use href="#i-plus"/></svg></span></summary><div class="antwoord"><p>Nee. Jij vertelt hoe je werkt, wij bouwen en beheren. Je logt in en gaat aan de slag.</p></div></details>
+        <details><summary>Werkt de app ook zonder Ally? <span class="plus"><svg width="12" height="12"><use href="#i-plus"/></svg></span></summary><div class="antwoord"><p>Ja. Ally is een hulp in de app, geen voorwaarde. Zet je hem uit, dan werkt alles gewoon door.</p></div></details>
+        <details><summary>Wat als Ally een fout maakt? <span class="plus"><svg width="12" height="12"><use href="#i-plus"/></svg></span></summary><div class="antwoord"><p>Daarom stelt Ally voor en beslis jij. Wat hij zelf mag doen, draai je met één klik terug.</p></div></details>
+        <details><summary>Wat kost het? <span class="plus"><svg width="12" height="12"><use href="#i-plus"/></svg></span></summary><div class="antwoord"><p>Eenmalig voor de bouw, daarna een vast bedrag per maand voor beheer, Ally en kleine verbeteringen. Vraag je een grotere nieuwe functie aan, dan hoor je vooraf of die binnen je abonnement past. Na de kennismaking krijg je een voorstel met de prijs, vóórdat we iets bouwen.</p></div></details>
+        <details><summary>Hoe snel heb ik iets? <span class="plus"><svg width="12" height="12"><use href="#i-plus"/></svg></span></summary><div class="antwoord"><p>Dat hangt af van wat je nodig hebt. In het voorstel staat een planning, en we beginnen met wat het meeste tijd scheelt.</p></div></details>
+        <details><summary>Wat gebeurt er met mijn gegevens? <span class="plus"><svg width="12" height="12"><use href="#i-plus"/></svg></span></summary><div class="antwoord"><p>Ze staan in je eigen omgeving en blijven van jou. Wat Ally ermee mag, leggen we samen vast voordat we beginnen.</p></div></details>
+      </div>
+    </div>
+  </section>
+
+  <!-- Slot -->
+  <section class="slot" id="contact">
+    <canvas class="sterren" aria-hidden="true"></canvas>
+    <div class="wrap">
+      <h2>Klaar om je <em>Ally</em> te ontmoeten?</h2>
+      <p>Vertel waar je tijd in gaat zitten, dan kijken we samen wat Ally je kan besparen.</p>
+      <div class="acties">
+        <a class="knop knop-primair" href="mailto:info@myally.nl?subject=Kennismaken%20met%20My%20Ally">Mail ons <svg><use href="#i-pijl"/></svg></a>
+      </div>
+      <p class="slot-mail">of mail naar <a href="mailto:info@myally.nl">info@myally.nl</a></p>
+      <div class="slot-ally" aria-hidden="true" data-kijkt="0.244">
+        <img src="/src/assets/ally.webp" alt="" width="912" height="1183" loading="lazy">
+        <span class="oog links"><i class="glans"></i></span><span class="oog rechts"><i class="glans"></i></span>
+        <span class="ooglid links"></span><span class="ooglid rechts"></span>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="voet">
+  <div class="woordmerk" aria-hidden="true">My Ally<i>.</i></div>
+</footer>
+
+<script type="module" src="/src/site.js"></script>
+
+</body>
 </html>
