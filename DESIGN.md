@@ -40,7 +40,9 @@ uitgevoerd. Wijk je af, zeg dan waarom.
   (niet al aan de onderrand), met een vaste duur. Scrol je terug tot erboven,
   dan staat de animatie weer klaar. Elmo wilde dit uitdrukkelijk niet gekoppeld
   aan de scrolpositie.
-- De film bij "Wijs aan" speelt alleen terwijl hij in beeld is.
+- De film bij "Wijs aan" speelt alleen terwijl hij in beeld is. De sectie staat
+  uit sinds 2026-11-19, tot aanwijzen vanuit de gewone app werkt; terugzetten =
+  de commit "haal Wijs aan weg" terugdraaien.
 - Veelgestelde vragen klappen soepel open en dicht (hoogte en doorzichtigheid,
   in elke browser). Zonder script werken ze gewoon als open/dicht.
 - Wie in zijn systeem "minder beweging" heeft aanstaan, krijgt alles in de
