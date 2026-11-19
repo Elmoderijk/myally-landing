@@ -323,7 +323,9 @@ section{scroll-margin-top:84px}
 .slot p{color:var(--fg-1);font-size:clamp(17px,1.5vw,20px);max-width:44ch;margin:0 auto 36px}
 .slot .acties{justify-content:center}
 .slot-ally{position:relative;width:min(440px,78vw);aspect-ratio:912/860;overflow:hidden;margin:clamp(40px,6vw,72px) auto 0}
-.slot .slot-wie{font-size:15px;color:var(--fg-2);margin:24px auto 0}
+.slot .slot-mail{font-size:15px;color:var(--fg-2);margin:20px auto 0}
+.slot-mail a{color:var(--fg-1);text-decoration:underline;text-decoration-color:var(--lijn-sterk);text-underline-offset:4px;display:inline-block;padding:12px 0;margin:-12px 0}
+.slot-mail a:hover{color:var(--fg);text-decoration-color:currentColor}
 .slot-ally img{width:100%;height:auto}
 .slot-ally .ooglid{top:24.4%;height:9.33%}
 .slot-ally .oog{top:20.5%;height:7.9%}
