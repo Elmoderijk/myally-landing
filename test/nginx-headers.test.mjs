@@ -30,8 +30,10 @@ describe('beveiligingskoppen landing', () => {
     assert.match(csp, /style-src 'self' 'unsafe-inline'/)
     assert.match(csp, /font-src 'self' data:/)
     assert.match(csp, /img-src 'self' data:/)
-    // de pagina heeft geen inline scripts, dus script-src 'self' breekt niets
-    const inline = [...html.matchAll(/<script(?![^>]*\bsrc=)[^>]*>/g)]
+    // de pagina heeft geen inline scripts, dus script-src 'self' breekt niets.
+    // Een JSON-LD-blok (bedrijfsgegevens voor Google) is data, geen script: de browser
+    // voert het niet uit en de CSP houdt het niet tegen.
+    const inline = [...html.matchAll(/<script(?![^>]*\bsrc=)(?![^>]*type="application\/ld\+json")[^>]*>/g)]
     assert.equal(inline.length, 0)
     assert.match(conf, /Strict-Transport-Security/)
   })
