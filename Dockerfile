@@ -5,6 +5,9 @@ COPY package*.json ./
 RUN npm ci
 COPY . .
 RUN npm run build
+# De tests draaien hier mee: de GitHub-workflow kan dat niet (de sleutel van de server mag
+# geen workflows wijzigen). Een rode test laat de uitrol mislukken in plaats van stil rood te staan.
+RUN npm test
 
 FROM nginx:alpine
 COPY --from=builder /app/dist /usr/share/nginx/html
